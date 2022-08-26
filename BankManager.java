@@ -27,7 +27,7 @@ public class BankManager {
 		char decision = option.charAt(0); //this converts the string into a char
 		System.out.println();
 
-		if (decision == 'y'){ //store this infomation in a text file
+		if (decision == 'y'){ //store this infomation in a text file. get/store customer age, sex.
 			System.out.println("You have chosen to create a checking account! At this moment we will take some of your information.");
 			System.out.println();
 			System.out.println("Please enter the name you would like your account to be under.");
