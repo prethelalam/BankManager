@@ -1,0 +1,6 @@
+The customers checking out information:
+
+Customer name is Zeus/Simba Alam
+Customer age is 4
+Customers sex is M
+Customers current balance: $354.23
