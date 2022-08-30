@@ -104,12 +104,35 @@ public class BankManager {
 			Scanner scan8 = new Scanner(System.in);
 			String response = scan8.nextLine();
 			char Response = response.charAt(0);
-
+			System.out.println();
+			
 			if (Response == 'y'){
-				
+			//read the checking account (balance)
 			}
-			//add another for saving balance?
+
+			if (Response == 'n'){
+				//ask if they wanna deposit, withdraw money
+			}
 		}
+	}
+		static void Saving() {
+				System.out.println("Would you like to create a savings account? (enter y/n)");
+				Scanner scan9 = new Scanner (System.in);
+				String input = scan9.nextLine();
+				char Input = input.charAt(0);
+				System.out.println();
+
+				if (Input == 'y'){
+					System.out.println("You have chosen to create a savings account! At this point we will take some information.");
+					System.out.println();
+					//create text file for savings account
+				}
+				else if (Input == 'n'){
+					System.out.println("You have chosen not to create a saving account. Would you like to check your balance?");
+					//ask if they want to deposit or withdraw money
+			}
+		}
+	
 		
 		/*else if (decision == 'n'){
 			System.out.println();
@@ -117,11 +140,12 @@ public class BankManager {
 			Welcome();
 		} */
 		
-	}
+	
 
 	public static void main(String[] args) {
 		Welcome();
 		Checking();
+		Saving();
 	} 
 }
 
