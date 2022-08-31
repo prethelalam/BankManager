@@ -1,6 +1,6 @@
-The customers checking out information:
+The customers checking account information:
 
-Customer name is Zeus/Simba Alam
-Customer age is 4
+Customer name is Prethel Alam
+Customers age is 23
 Customers sex is M
-Customers current balance: $354.23
+Customers current balance: $432.21
