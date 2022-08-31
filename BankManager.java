@@ -23,7 +23,7 @@ public class BankManager {
 	static void WelcomeBack(){
 		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!");
 	}
-
+//make a checking and savings function
 	static void Accounts() {
 		System.out.println("Are you a new customer? (enter y/n)");
 		Scanner scan7 = new Scanner(System.in);
@@ -32,13 +32,13 @@ public class BankManager {
 		System.out.println();
 
 		if (Answer == 'y'){ 
-			System.out.println("Would you like to open a checking account or a savings account? Enter c for checking and s for savings.");
+			System.out.println("Would you like to open a checking account or a savings account? Enter checking for checking and saving for savings.");
 			Scanner scan2 = new Scanner(System.in);
 			String option = scan2.nextLine();
-			char decision = option.charAt(0); //this converts the string into a char
+			//char decision = option.charAt(0); //this converts the string into a char
 			System.out.println();
 
-			if (decision == 'c'){
+			if (option.equals("checking")){
 			System.out.println("You have chosen to create a checking account! At this moment we will take some of your information.");
 			System.out.println();
 
@@ -53,10 +53,10 @@ public class BankManager {
 			Integer Age = Integer.parseInt(age);
 			System.out.println();
 
-			System.out.println("What is your sex (M/F)?");
+			System.out.println("What is your sex (Male/Female)?");
 			Scanner scan5 = new Scanner(System.in);
 			String sex = scan5.nextLine();
-			char Sex = sex.charAt(0);
+			//char Sex = sex.charAt(0);
 			System.out.println();
 
 			System.out.println("How much money would you like to deposit into your checking account?");
@@ -79,7 +79,7 @@ public class BankManager {
 				WriteCheckingInformation.print("Customers age is ");
 				WriteCheckingInformation.println(Age);
 				WriteCheckingInformation.print("Customers sex is ");
-				WriteCheckingInformation.println(Sex);
+				WriteCheckingInformation.println(sex);
 				WriteCheckingInformation.print("Customers current balance: $");
 				WriteCheckingInformation.println(Deposit);
 				WriteCheckingInformation.close();
@@ -93,7 +93,7 @@ public class BankManager {
 			Accounts();
 			}
 
-			else if (decision == 's'){
+			else if (option.equals("saving")){
 				System.out.println("You have chosen to create a savings account! At this point we will take some information.");
 					System.out.println();
 
@@ -111,7 +111,7 @@ public class BankManager {
 					System.out.println("What is your sex (M/F)");
 					Scanner scan12 = new Scanner(System.in);
 					String sex = scan12.nextLine();
-					char Sex = sex.charAt(0);
+					//char Sex = sex.charAt(0);
 					System.out.println();
 
 					System.out.println("How much would you like to deposit into your savings account?");
@@ -134,7 +134,7 @@ public class BankManager {
 						WriteSavingInformation.print("Customers age is ");
 						WriteSavingInformation.println(Age);
 						WriteSavingInformation.print("Customers sex is ");
-						WriteSavingInformation.println(Sex);
+						WriteSavingInformation.println(sex);
 						WriteSavingInformation.print("Customers current balance: $");
 						WriteSavingInformation.println(Deposit);
 						WriteSavingInformation.close();
@@ -149,50 +149,49 @@ public class BankManager {
 			}
 		}
 
+		//so after making a checking for a new customer, you arent new anymore, so give the option to make a savings after they finish making a checking. do the same for if you make a savings account first
+		// can ask if you would like to make a savings account. if not then you can do would you like to access your checking or savings account (but you dont have a savings)
 		else if (Answer == 'n'){
-			System.out.println("Would you like to access your checking or savings account. (Enter c for checking and s for saving)");
+			System.out.println("Would you like to access your checking or savings account. (Enter checking for checking and saving for saving)");
 			Scanner scan8 = new Scanner(System.in);
 			String response = scan8.nextLine();
-			char Response = response.charAt(0);
 			System.out.println();
 			
-			if (Response == 'c')
+			if (response.equals("checking"))
 			{
-				System.out.println("For your checking account: Would you like to see your balance, deposit money, or withdraw money? (enter b for balance, d for deposit, or w for withdraw)");
+				System.out.println("For your checking account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
 				Scanner scan15 = new Scanner(System.in);
 				String selection = scan15.nextLine();
-				char Selection = selection.charAt(0);
 				System.out.println();
 
-				if (Selection == 'b'){
+				if (selection.equals("balance")){
 					//read the checking account (balance)
 				}
 
-				else if (Selection == 'd'){
+				else if (selection.equals("deposit")){
 					//ask if they wanna deposit (add to current balance)
 				}
 
-				else if (Selection == 'w'){
+				else if (selection.equals("withdraw")){
 					//withdraw money from current balance 
 				}
 			}
 
-			else if (Response == 's'){
-				System.out.println("For your saving account: Would you like to see your balance, deposit money, or withdraw money? (enter b for balance, d for deposit, or w for withdraw)");
+			else if (response.equals("saving")){
+				System.out.println("For your saving account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
 				Scanner scan14 = new Scanner(System.in);
 				String selection = scan14.nextLine();
-				char Selection = selection.charAt(0);
 				System.out.println();
 
-				if (Selection == 'b'){
+				if (selection.equals("balance")){
 					//read balance 
 				}
 
-				else if (Selection == 'd'){
+				else if (selection.equals("deposit")){
 					//deposit money (add to current balance)
 				}
 
-				else if (Selection == 'w'){
+				else if (selection.equals("withdraw")){
 					//withdraw money from current balance 
 				}
 			}

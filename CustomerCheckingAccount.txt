@@ -2,5 +2,5 @@ The customers checking account information:
 
 Customer name is Prethel Alam
 Customers age is 23
-Customers sex is M
-Customers current balance: $432.21
+Customers sex is Male
+Customers current balance: $234.32
