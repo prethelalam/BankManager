@@ -302,6 +302,11 @@ public class BankManager {
 	public static void main(String[] args) {
 		Welcome();
 		Accounts();
+
+		//maybe make a function for a deposit? 
+		//maybe make how much the wanna deposit into a function? pass in information
+		//double deposit;
+		//MoneyInAccount(deposit);
 	}
 }
 	
