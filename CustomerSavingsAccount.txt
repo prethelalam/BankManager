@@ -3,4 +3,4 @@ The customers savings account information:
 Customer name is Zeus Alam
 Customers age is 4
 Customers sex is Male
-Customers current balance: $6532.23
+Customers current balance: $4321.21

@@ -23,7 +23,7 @@ public class BankManager {
 	static void WelcomeBack(){
 		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!");
 		System.out.println();
-		System.out.println("Would you like to create another account, wheather that be a checking or savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
+		System.out.println("Lets create another account, wheather that be a checking or savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
 		Scanner scan17 = new Scanner(System.in);
 		String choice = scan17.nextLine();
 		System.out.println();
@@ -75,7 +75,7 @@ public class BankManager {
 				WriteCheckingInformation.println("Customer name is " + CustomerName);
 				WriteCheckingInformation.println("Customers age is " + Age);
 				WriteCheckingInformation.println("Customers sex is " + sex);
-				WriteCheckingInformation.println(/*"Customers current balance: $" + */Deposit);
+				WriteCheckingInformation.println(/*"Customers current balance: $" +*/ Deposit);
 				WriteCheckingInformation.close();
 				System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
 				System.out.println();
@@ -204,12 +204,11 @@ public class BankManager {
 
 				else if (selection.equals("deposit")){
 					//ask if they wanna deposit (add to current balance)
-					String text = ""; //maybe take out quotes
-					Double Text = Double.parseDouble(text);
+					//String text = ""; //maybe take out quotes
+					//Double Text = Double.parseDouble(text);
 					int lineNumber;
 					Double money;
 					
-
 					System.out.println("How much money would you like to deposit?");
 					Scanner scan19 = new Scanner(System.in);
 					String capture = scan19.nextLine();
@@ -223,11 +222,31 @@ public class BankManager {
 							for (lineNumber = 1; lineNumber < 7; lineNumber++){
 
 								if (lineNumber == 6){
-									//String specfic_line_text = Files.readAllLines(Paths.get("CustomerCheckingAccount.txt")).get(3);
-									//Double text = Double.parseDouble(specfic_line_text);
+									String word; // = Double.parseDouble(text);
+									word = readbuffer.readLine();
+									Double Word = Double.parseDouble(word);
 									
-									text = readbuffer.readLine();
-									money = (Text + Capture);
+									Double cash;
+									cash = Word + Capture;
+									System.out.println(cash);
+									
+									/*File FileToBeModified = new File("CustomerCheckingAccount.txt");
+									String oldContent = "";
+									BufferedReader reader = new BufferedReader(new FileReader(FileToBeModified));
+									String line = reader.readLine();
+
+									while (line != null){
+										oldContent = Word + line + System.lineSeparator();
+										line = reader.readLine();
+									}
+									String NewContent = oldContent.replaceALL(Word, cash);
+									FileWriter writer = new FileWriter(FileToBeModified);
+
+									Double newContent = Double.parse(NewContent);
+									writer.write(newContent);
+
+									reader.close();
+									writer.close(); */
 								}
 								else{
 									readbuffer.readLine();
@@ -237,7 +256,7 @@ public class BankManager {
 								catch (IOException e) {
 									e.printStackTrace();
 								}
-								System.out.println(text);
+									
 							
 						
 					//option to check balance
