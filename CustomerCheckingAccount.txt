@@ -3,4 +3,4 @@ The customers checking account information:
 Customer name is Zeus Alam
 Customers age is 4
 Customers sex is Male
-Customers current balance: $23.45
+33.01

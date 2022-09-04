@@ -75,7 +75,7 @@ public class BankManager {
 				WriteCheckingInformation.println("Customer name is " + CustomerName);
 				WriteCheckingInformation.println("Customers age is " + Age);
 				WriteCheckingInformation.println("Customers sex is " + sex);
-				WriteCheckingInformation.println(/*"Customers current balance: $" +*/ Deposit);
+				WriteCheckingInformation.println(/*"Customers current balance: $" +*/ Deposit); //seperate the sentence and amount on different lines and read only the price in ATM function
 				WriteCheckingInformation.close();
 				System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
 				System.out.println();
@@ -230,7 +230,7 @@ public class BankManager {
 									cash = Word + Capture;
 									System.out.println(cash);
 
-									//SO WHAT IF I READ EVERY LINE INSTEAD AND BASICALLY REINPUT THE SAME STRINGS AND JSUT CHANGE THE AMOUNT. YOU COULD DO THAT (just store it in different varaible names)- like you read a line in balance but then for deposit you stored it under word and were able to add to it
+									//SO WHAT IF I READ EVERY LINE INSTEAD AND BASICALLY REINPUT THE SAME STRINGS AND JSUT CHANGE THE AMOUNT. YOU COULD DO THAT (just store it in different varaible names)- like you read a line in balance but then for deposit you stored it under word and were able to add to it. then put that info in the text file (write it)
 									
 									/*File FileToBeModified = new File("CustomerCheckingAccount.txt");
 									String oldContent = "";
