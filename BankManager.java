@@ -21,9 +21,9 @@ public class BankManager {
 	}
 
 	static void WelcomeBack(){
-		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!");
+		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!"); 
 		System.out.println();
-		System.out.println("Lets create another account, wheather that be a checking or savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
+		System.out.println("Lets create another account, wheather that be a checking or savings account? (Enter checking to create a checking account and enter saving to create a savings account)"); //lets change this to accessing to checking or saving
 		Scanner scan17 = new Scanner(System.in);
 		String choice = scan17.nextLine();
 		System.out.println();
@@ -136,7 +136,7 @@ public class BankManager {
 
 //make a checking and savings function
 	static void Accounts() {
-		System.out.println("Are you a new customer? (enter yes/no)");
+		System.out.println("Are you a new customer? (enter yes/no)"); //lets change this to lets create a savings, checking since they will be new the first time they run it
 		Scanner scan7 = new Scanner(System.in);
 		String answer = scan7.nextLine();
 		//char Answer = answer.charAt(0);
@@ -229,6 +229,8 @@ public class BankManager {
 									Double cash;
 									cash = Word + Capture;
 									System.out.println(cash);
+
+									//SO WHAT IF I READ EVERY LINE INSTEAD AND BASICALLY REINPUT THE SAME STRINGS AND JSUT CHANGE THE AMOUNT. YOU COULD DO THAT (just store it in different varaible names)- like you read a line in balance but then for deposit you stored it under word and were able to add to it
 									
 									/*File FileToBeModified = new File("CustomerCheckingAccount.txt");
 									String oldContent = "";
