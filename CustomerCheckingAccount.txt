@@ -1,6 +1,13 @@
 The customers checking account information:
 
-Customer name is Zeus Alam
-Customers age is 4
+Customer name is Prethel Alam
+Customers age is 23
 Customers sex is Male
-33.01
+Customers current balance:
+10.21
+
+Updated Checking Balance: $20.42
+
+
+Updated Checking Balance: $20.42
+

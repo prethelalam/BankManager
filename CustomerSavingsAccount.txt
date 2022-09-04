@@ -1,6 +1,7 @@
 The customers savings account information:
 
-Customer name is Zeus Alam
-Customers age is 4
+Customer name is Prethel Alam
+Customers age is 23
 Customers sex is Male
-Customers current balance: $4321.21
+Customers current balance:
+5432.21

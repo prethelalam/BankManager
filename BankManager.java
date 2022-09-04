@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.text.NumberFormat;
 //import java.io.PrintWriter;
 import java.io.*; //need to import this package in order to crate and write in files (by putting in * you can include all the classes you want to use (such as write and print)
 
@@ -48,7 +49,7 @@ public class BankManager {
 			System.out.println("What is your current age?");
 			Scanner scan4 = new Scanner(System.in);
 			String age = scan4.nextLine();
-			Integer Age = Integer.parseInt(age);
+			//Integer Age = Integer.parseInt(age);
 			System.out.println();
 
 			System.out.println("What is your sex (Male/Female)?");
@@ -73,9 +74,10 @@ public class BankManager {
 				WriteCheckingInformation.println("The customers checking account information:");
 				WriteCheckingInformation.println();
 				WriteCheckingInformation.println("Customer name is " + CustomerName);
-				WriteCheckingInformation.println("Customers age is " + Age);
+				WriteCheckingInformation.println("Customers age is " + age);
 				WriteCheckingInformation.println("Customers sex is " + sex);
-				WriteCheckingInformation.println(/*"Customers current balance: $" +*/ Deposit); //seperate the sentence and amount on different lines and read only the price in ATM function
+				WriteCheckingInformation.println("Customers current balance:"); //seperate the sentence and amount on different lines and read only the price in ATM function
+				WriteCheckingInformation.println(Deposit);
 				WriteCheckingInformation.close();
 				System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
 				System.out.println();
@@ -124,7 +126,8 @@ public class BankManager {
 						WriteSavingInformation.println("Customer name is " + name);
 						WriteSavingInformation.println("Customers age is " + Age);
 						WriteSavingInformation.println("Customers sex is " + sex);
-						WriteSavingInformation.println("Customers current balance: $" + Deposit);
+						WriteSavingInformation.println("Customers current balance:");
+						WriteSavingInformation.println(Deposit);
 						WriteSavingInformation.close();
 						System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
 						System.out.println();
@@ -184,8 +187,8 @@ public class BankManager {
 						FileReader readfile = new FileReader("CustomerCheckingAccount.txt");
 						BufferedReader readbuffer = new BufferedReader(readfile);
 
-						for (lineNumber = 1; lineNumber < 7; lineNumber++) { //set up a for condition
-        					if (lineNumber == 6) {
+						for (lineNumber = 1; lineNumber < 8; lineNumber++) { //set up a for condition
+        					if (lineNumber == 7) {
 								text = readbuffer.readLine();
 							} 
 							else {
@@ -195,8 +198,8 @@ public class BankManager {
 							} 
 							catch (IOException e) {
     						e.printStackTrace();
-    					}
-					System.out.println(text);
+						}
+					System.out.print("Your current checking account balance is $" + text);
 					// thank you (end)
 						}
 					
@@ -208,6 +211,7 @@ public class BankManager {
 					//Double Text = Double.parseDouble(text);
 					int lineNumber;
 					Double money;
+					String deposit = "";
 					
 					System.out.println("How much money would you like to deposit?");
 					Scanner scan19 = new Scanner(System.in);
@@ -215,54 +219,147 @@ public class BankManager {
 					Double Capture = Double.parseDouble(capture);
 					System.out.println();
 
+					FileWriter fw = null;
+					BufferedWriter bw = null;
+					PrintWriter pw = null;
+
 						try {
-							FileReader readfile = new FileReader("CustomerCheckingAccount.txt");
-							BufferedReader readbuffer = new BufferedReader(readfile);
+							/*File CheckingInformation = new File ("CustomerCheckingAccount.txt");
 
-							for (lineNumber = 1; lineNumber < 7; lineNumber++){
-
-								if (lineNumber == 6){
-									String word; // = Double.parseDouble(text);
-									word = readbuffer.readLine();
-									Double Word = Double.parseDouble(word);
-									
-									Double cash;
-									cash = Word + Capture;
-									System.out.println(cash);
-
-									//SO WHAT IF I READ EVERY LINE INSTEAD AND BASICALLY REINPUT THE SAME STRINGS AND JSUT CHANGE THE AMOUNT. YOU COULD DO THAT (just store it in different varaible names)- like you read a line in balance but then for deposit you stored it under word and were able to add to it. then put that info in the text file (write it)
-									
-									/*File FileToBeModified = new File("CustomerCheckingAccount.txt");
-									String oldContent = "";
-									BufferedReader reader = new BufferedReader(new FileReader(FileToBeModified));
-									String line = reader.readLine();
-
-									while (line != null){
-										oldContent = Word + line + System.lineSeparator();
-										line = reader.readLine();
+								if (CheckingInformation.exists()){
+										CheckingInformation.open();
 									}
-									String NewContent = oldContent.replaceALL(Word, cash);
-									FileWriter writer = new FileWriter(FileToBeModified);
+								PrintWriter WriteCheckingInformation = new PrintWriter(CheckingInformation);*/
+									fw = new FileWriter("CustomerCheckingAccount.txt", true);
+									bw = new BufferedWriter(fw);
+									pw = new PrintWriter(bw);
+								
+								try {
+									FileReader readfile = new FileReader("CustomerCheckingAccount.txt");
+									BufferedReader readbuffer = new BufferedReader(readfile);
+									
+									for (lineNumber = 1; lineNumber < 8; lineNumber++){
+										if (lineNumber == 7){
+											deposit = readbuffer.readLine();
+											Double Deposit = Double.parseDouble(deposit);
+											money = Capture + Deposit;
 
-									Double newContent = Double.parse(NewContent);
-									writer.write(newContent);
+											pw.println();
+											pw.println("Updated Checking Balance: $" + money);
+											pw.println();
+			
+											System.out.println("Your checking balance has been updated!");
+											System.out.println("Updated Checking Balance: $" + money);
 
-									reader.close();
-									writer.close(); */
-								}
-								else{
-									readbuffer.readLine();
-								}
-								}
-								}
-								catch (IOException e) {
+											pw.close();
+											bw.close();
+											fw.close();
+										}
+										else {
+											readbuffer.readLine();
+										}
+										
+										
+										
+										//pw.close();
+										
+										//WriteCheckingInformation.println(Intro);
+										//WriteCheckingInformation.close();
+										/*int x =5;
+										WriteCheckingInformation.println(x);
+										WriteCheckingInformation.close();*/
+									/*if (lineNumber == 1)
+									{
+										String Introduction = readbuffer.readLine();
+										WriteCheckingInformation.println(Introduction);
+										WriteCheckingInformation.println();
+										WriteCheckingInformation.close();
+									}
+									else{
+										readbuffer.readLine();
+									}
+
+									if (lineNumber == 3){
+										String Name = readbuffer.readLine();
+										WriteCheckingInformation.println(Name);
+										WriteCheckingInformation.close();
+									}
+									else {
+										readbuffer.readLine();
+									}
+
+									if (lineNumber == 4){
+										String age = readbuffer.readLine();
+										//Integer Age = Integer.parseInt(age);
+										WriteCheckingInformation.println(age);
+										WriteCheckingInformation.close();
+									}
+									else {
+										readbuffer.readLine();
+									}
+
+									if (lineNumber == 5){
+										String Sex = readbuffer.readLine();
+										WriteCheckingInformation.println(Sex);
+										WriteCheckingInformation.close();
+									}
+									else{
+										readbuffer.readLine();
+									}
+
+									if (lineNumber == 6){
+										String currentBalance = readbuffer.readLine();
+										WriteCheckingInformation.println(currentBalance);
+										WriteCheckingInformation.close();
+									}
+									
+									else {
+										readbuffer.readLine();
+									}
+
+									if (lineNumber == 7){
+										String amount; // = Double.parseDouble(text);
+										amount = readbuffer.readLine();
+
+										Double Amount = Double.parseDouble(amount);
+										Double cash;
+
+										cash = Amount + Capture;
+
+										String Cash = Double.toString(cash);
+										String Taken = Double.toString(Capture);
+
+										WriteCheckingInformation.println(Cash);
+										System.out.println("Your checking balance has been updated");
+										System.out.println();
+										System.out.println("Your current balance is: $");
+										System.out.print(Cash);
+										WriteCheckingInformation.close();
+									}
+									else {
+										readbuffer.readLine();
+									}*/ 
+								} 
+							}finally{
+								System.out.println();
+							}
+						}
+								catch (IOException e){
 									e.printStackTrace();
 								}
+						
+						}
+					
+
+									//SO WHAT IF I READ EVERY LINE INSTEAD AND BASICALLY REINPUT THE SAME STRINGS AND JSUT CHANGE THE AMOUNT. YOU COULD DO THAT (just store it in different varaible names)- like you read a line in balance but then for deposit you stored it under word and were able to add to it. then put that info in the text file (write it)
+								
+								
+							
 									
 							
 						
 					//option to check balance
-				}
+				
 
 				else if (selection.equals("withdraw")){
 					//withdraw money from current balance 
@@ -270,7 +367,6 @@ public class BankManager {
 					//option to check balance
 				}
 			}
-			
 			
 			else if (response.equals("saving")){
 				System.out.println("For your saving account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
