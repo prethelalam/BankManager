@@ -243,9 +243,11 @@ public class BankManager {
 											deposit = readbuffer.readLine();
 											Double Deposit = Double.parseDouble(deposit);
 											money = Capture + Deposit;
+											Deposit = money;
 
 											pw.println();
-											pw.println("Updated Checking Balance: $" + money);
+											pw.println("Updated Checking Balance: ");
+											pw.println(money);
 											pw.println();
 			
 											System.out.println("Your checking balance has been updated!");
@@ -254,91 +256,12 @@ public class BankManager {
 											pw.close();
 											bw.close();
 											fw.close();
+
+											//put another if statment and look at the new line?
 										}
 										else {
 											readbuffer.readLine();
 										}
-										
-										
-										
-										//pw.close();
-										
-										//WriteCheckingInformation.println(Intro);
-										//WriteCheckingInformation.close();
-										/*int x =5;
-										WriteCheckingInformation.println(x);
-										WriteCheckingInformation.close();*/
-									/*if (lineNumber == 1)
-									{
-										String Introduction = readbuffer.readLine();
-										WriteCheckingInformation.println(Introduction);
-										WriteCheckingInformation.println();
-										WriteCheckingInformation.close();
-									}
-									else{
-										readbuffer.readLine();
-									}
-
-									if (lineNumber == 3){
-										String Name = readbuffer.readLine();
-										WriteCheckingInformation.println(Name);
-										WriteCheckingInformation.close();
-									}
-									else {
-										readbuffer.readLine();
-									}
-
-									if (lineNumber == 4){
-										String age = readbuffer.readLine();
-										//Integer Age = Integer.parseInt(age);
-										WriteCheckingInformation.println(age);
-										WriteCheckingInformation.close();
-									}
-									else {
-										readbuffer.readLine();
-									}
-
-									if (lineNumber == 5){
-										String Sex = readbuffer.readLine();
-										WriteCheckingInformation.println(Sex);
-										WriteCheckingInformation.close();
-									}
-									else{
-										readbuffer.readLine();
-									}
-
-									if (lineNumber == 6){
-										String currentBalance = readbuffer.readLine();
-										WriteCheckingInformation.println(currentBalance);
-										WriteCheckingInformation.close();
-									}
-									
-									else {
-										readbuffer.readLine();
-									}
-
-									if (lineNumber == 7){
-										String amount; // = Double.parseDouble(text);
-										amount = readbuffer.readLine();
-
-										Double Amount = Double.parseDouble(amount);
-										Double cash;
-
-										cash = Amount + Capture;
-
-										String Cash = Double.toString(cash);
-										String Taken = Double.toString(Capture);
-
-										WriteCheckingInformation.println(Cash);
-										System.out.println("Your checking balance has been updated");
-										System.out.println();
-										System.out.println("Your current balance is: $");
-										System.out.print(Cash);
-										WriteCheckingInformation.close();
-									}
-									else {
-										readbuffer.readLine();
-									}*/ 
 								} 
 							}finally{
 								System.out.println();

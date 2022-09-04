@@ -1,13 +1,23 @@
 The customers checking account information:
 
-Customer name is Prethel Alam
+Customer name is Prethel
 Customers age is 23
 Customers sex is Male
 Customers current balance:
 10.21
 
-Updated Checking Balance: $20.42
+Updated Checking Balance:
+20.44
 
 
-Updated Checking Balance: $20.42
+Updated Checking Balance: 
+20.22
+
+
+Updated Checking Balance: 
+26.08
+
+
+Updated Checking Balance: 
+70.22
 
