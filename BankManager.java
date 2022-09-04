@@ -9,6 +9,7 @@ import java.io.*; //need to import this package in order to crate and write in f
 
 
 public class BankManager {
+	public static Double Deposit;
 	static void Welcome() {
 		System.out.println();
 		System.out.println("Welcome to Seamless Bank! Our repution is that we provide a seamless experience in many different transactions and creating various accounts for our clients!");
@@ -61,7 +62,7 @@ public class BankManager {
 			System.out.println("How much money would you like to deposit into your checking account?");
 			Scanner scan6 = new Scanner(System.in);
 			String amount = scan6.nextLine();
-			Double Deposit = Double.parseDouble(amount);
+			BankManager.Deposit = Double.parseDouble(amount);
 			System.out.println();
 
 			try {
@@ -224,12 +225,6 @@ public class BankManager {
 					PrintWriter pw = null;
 
 						try {
-							/*File CheckingInformation = new File ("CustomerCheckingAccount.txt");
-
-								if (CheckingInformation.exists()){
-										CheckingInformation.open();
-									}
-								PrintWriter WriteCheckingInformation = new PrintWriter(CheckingInformation);*/
 									fw = new FileWriter("CustomerCheckingAccount.txt", true);
 									bw = new BufferedWriter(fw);
 									pw = new PrintWriter(bw);
@@ -238,18 +233,20 @@ public class BankManager {
 									FileReader readfile = new FileReader("CustomerCheckingAccount.txt");
 									BufferedReader readbuffer = new BufferedReader(readfile);
 									
-									for (lineNumber = 1; lineNumber < 8; lineNumber++){
-										if (lineNumber == 7){
-											deposit = readbuffer.readLine();
-											Double Deposit = Double.parseDouble(deposit);
-											money = Capture + Deposit;
-											Deposit = money;
+									//for (lineNumber = 1; lineNumber < 8; lineNumber++){
+										//if (lineNumber == 7){
+											//deposit = readbuffer.readLine();
+											//Double Deposit = Double.parseDouble(deposit);
+											money = Capture + BankManager.Deposit;
+											//deposit = Double.toString(money);
+											BankManager.Deposit = money;
 
 											pw.println();
 											pw.println("Updated Checking Balance: ");
 											pw.println(money);
 											pw.println();
-			
+											pw.println(deposit);
+
 											System.out.println("Your checking balance has been updated!");
 											System.out.println("Updated Checking Balance: $" + money);
 
@@ -257,12 +254,12 @@ public class BankManager {
 											bw.close();
 											fw.close();
 
-											//put another if statment and look at the new line?
-										}
-										else {
-											readbuffer.readLine();
-										}
-								} 
+											//put another if statment and look at the new line? (ehh not the best idea)
+										//}
+										//else {
+										//	readbuffer.readLine();
+										//}
+								//} 
 							}finally{
 								System.out.println();
 							}
@@ -337,7 +334,6 @@ public class BankManager {
 			}
 		}
 	}
-		
 
 	public static void main(String[] args) {
 		Welcome();
