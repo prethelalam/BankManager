@@ -1,7 +1,9 @@
 //package BankManager;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.text.NumberFormat;
 //import java.io.PrintWriter;
@@ -10,16 +12,61 @@ import java.io.*; //need to import this package in order to crate and write in f
 
 public class BankManager {
 	public static Double Deposit;
-	static void Welcome() {
+	static void Welcome(ArrayList <String> namearray, Scanner scan1, ArrayList <Double> checkingArray, ArrayList <Double> savingArray) {
+		
+
 		System.out.println();
 		System.out.println("Welcome to Seamless Bank! Our repution is that we provide a seamless experience in many different transactions and creating various accounts for our clients!");
-		System.out.println();
-		System.out.println("What is your name?");
-		Scanner scan1 = new Scanner(System.in);
-		String name = scan1.nextLine();
-		System.out.println();
-		System.out.println("Welcome " + name + "!");
-		System.out.println();
+		System.out.println("Are you a new or exisiting customer? (enter new or existing)");
+
+		//Scanner scan1 = new Scanner(System.in);
+		String response = scan1.next();
+
+		if (response.equals("new")){
+			System.out.println("What is your name?");
+			Scanner scan4 = new Scanner(System.in);
+			String name = scan4.nextLine();
+			namearray.add(name); //so here we are adding name into the namearray
+			System.out.println();
+			System.out.println("Welcome " + name);
+			System.out.println();
+			System.out.println("Would you like to open a checking account or a savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
+			
+			response = scan1.next();
+
+			if (response.equals("checking")){
+				Checking();
+			}
+			else {
+				Saving();
+			}
+
+		}
+
+		else {
+			System.out.println("What is your name?");
+			Scanner scan2 = new Scanner(System.in);
+			String name = scan2.nextLine();
+
+			System.out.println("Welcome " + name);
+			System.out.println();
+			int nameIndex = namearray.indexOf(name); //this is saving the index (place value in the arraylist) of the name
+
+			System.out.println("Would you like to access your checking or savings account? (Enter checking for checking and saving for savings)");
+			Scanner scan3 = new Scanner(System.in);
+			response = scan3.nextLine();
+
+			if (response.equals("checking"))
+			{
+				checkingATM(nameIndex, checkingArray);
+			}
+			else {
+				savingATM(nameIndex, savingArray);
+			}
+		}
+
+		
+		
 	}
 
 	static void WelcomeBack(){
@@ -39,7 +86,8 @@ public class BankManager {
 		}
 	}
 
-	static void Checking(){System.out.println("You have chosen to create a checking account! At this moment we will take some of your information.");
+	static void Checking(){
+			System.out.println("You have chosen to create a checking account! At this moment we will take some of your information.");
 			System.out.println();
 
 			System.out.println("Please enter the name you would like your account to be under.");
@@ -138,211 +186,94 @@ public class BankManager {
 					}
 		}
 
-//make a checking and savings function
-	static void Accounts() {
-		System.out.println("Are you a new customer? (enter yes/no)"); //lets change this to lets create a savings, checking since they will be new the first time they run it
-		Scanner scan7 = new Scanner(System.in);
-		String answer = scan7.nextLine();
-		//char Answer = answer.charAt(0);
+static void checkingATM(int index, ArrayList <Double> checkingATM){
+		System.out.println("For your checking account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
+		Scanner scan15 = new Scanner(System.in);
+		String selection = scan15.nextLine();
 		System.out.println();
 
-		if (answer.equals("yes")){ 
-			System.out.println("Would you like to open a checking account or a savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
-			Scanner scan2 = new Scanner(System.in);
-			String option = scan2.nextLine();
-			//char decision = option.charAt(0); //this converts the string into a char
-			System.out.println();
-
-			if (option.equals("checking")){
-				Checking();
-				WelcomeBack();
-			}
-
-			else if (option.equals("saving")){
-				Saving();
-				WelcomeBack();
-			}
-		}
-
-		//so after making a checking for a new customer, you arent new anymore, so give the option to make a savings after they finish making a checking. do the same for if you make a savings account first
-		// can ask if you would like to make a savings account. if not then you can do would you like to access your checking or savings account (but you dont have a savings)
-		else if (answer.equals("no")){
-			System.out.println("Would you like to access your checking or savings account? (Enter checking to access your checking account and enter saving to access your savings account)");
-			Scanner scan8 = new Scanner(System.in);
-			String response = scan8.nextLine();
-			System.out.println();
-			
-			if (response.equals("checking"))
-			{
-				System.out.println("For your checking account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
-				Scanner scan15 = new Scanner(System.in);
-				String selection = scan15.nextLine();
-				System.out.println();
-
-				if (selection.equals("balance")){
-					//read the checking account (balance)
-					String text = "";
-					int lineNumber;
-
-					try { //this is to read files
-						FileReader readfile = new FileReader("CustomerCheckingAccount.txt");
-						BufferedReader readbuffer = new BufferedReader(readfile);
-
-						for (lineNumber = 1; lineNumber < 8; lineNumber++) { //set up a for condition
-        					if (lineNumber == 7) {
-								text = readbuffer.readLine();
-							} 
-							else {
-								readbuffer.readLine();
-							}
-							}
-							} 
-							catch (IOException e) {
-    						e.printStackTrace();
-						}
-					System.out.print("Your current checking account balance is $" + text);
-					// thank you (end)
-						}
-					
-				
-
-				else if (selection.equals("deposit")){
-					//ask if they wanna deposit (add to current balance)
-					//String text = ""; //maybe take out quotes
-					//Double Text = Double.parseDouble(text);
-					int lineNumber;
-					Double money;
-					String deposit = "";
-					
-					System.out.println("How much money would you like to deposit?");
-					Scanner scan19 = new Scanner(System.in);
-					String capture = scan19.nextLine();
-					Double Capture = Double.parseDouble(capture);
-					System.out.println();
-
-					FileWriter fw = null;
-					BufferedWriter bw = null;
-					PrintWriter pw = null;
-
-						try {
-									fw = new FileWriter("CustomerCheckingAccount.txt", true);
-									bw = new BufferedWriter(fw);
-									pw = new PrintWriter(bw);
-								
-								try {
-									FileReader readfile = new FileReader("CustomerCheckingAccount.txt");
-									BufferedReader readbuffer = new BufferedReader(readfile);
-									
-									//for (lineNumber = 1; lineNumber < 8; lineNumber++){
-										//if (lineNumber == 7){
-											//deposit = readbuffer.readLine();
-											//Double Deposit = Double.parseDouble(deposit);
-											money = Capture + BankManager.Deposit;
-											//deposit = Double.toString(money);
-											BankManager.Deposit = money;
-
-											pw.println();
-											pw.println("Updated Checking Balance: ");
-											pw.println(money);
-											pw.println();
-											pw.println(deposit);
-
-											System.out.println("Your checking balance has been updated!");
-											System.out.println("Updated Checking Balance: $" + money);
-
-											pw.close();
-											bw.close();
-											fw.close();
-
-											//put another if statment and look at the new line? (ehh not the best idea)
-										//}
-										//else {
-										//	readbuffer.readLine();
-										//}
-								//} 
-							}finally{
-								System.out.println();
-							}
-						}
-								catch (IOException e){
-									e.printStackTrace();
-								}
-						
-						}
-					
-
-									//SO WHAT IF I READ EVERY LINE INSTEAD AND BASICALLY REINPUT THE SAME STRINGS AND JSUT CHANGE THE AMOUNT. YOU COULD DO THAT (just store it in different varaible names)- like you read a line in balance but then for deposit you stored it under word and were able to add to it. then put that info in the text file (write it)
-								
-								
-							
-									
-							
-						
-					//option to check balance
-				
-
-				else if (selection.equals("withdraw")){
-					//withdraw money from current balance 
-
-					//option to check balance
+		if (selection.equals("balance")){
+			System.out.println("Your balance is: $" + checkingATM.get(index));
 				}
+
+		else if (selection.equals("deposit")){
+			System.out.println("How much would you like to deposit?");
+			Scanner scan5 = new Scanner(System.in);
+			Double depositAmount = scan5.nextDouble(); //this is something else you can do to read doubles
+			Double intialBalance = checkingATM.get(index);
+			Double NewBalance = intialBalance + depositAmount;
+			checkingATM.set(index, NewBalance);
+			System.out.println("Your new balance is: $" + NewBalance);
+		
 			}
+
+		else if (selection.equals("withdraw")){
+			System.out.println("How much would you like to withdraw?");
+			Scanner scan6 = new Scanner(System.in);
+			Double withdrawAmount = scan6.nextDouble();
+			Double intialBalance = checkingATM.get(index);
+			Double NewBalance = intialBalance - withdrawAmount;
+			checkingATM.set(index, NewBalance);
+			System.out.println("Your new balance is: $" + NewBalance);
+		}
+	}
+//}
 			
-			else if (response.equals("saving")){
+			//else if (response.equals("saving")){
+				static void savingATM(int index, ArrayList <Double> savingATM){
 				System.out.println("For your saving account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
 				Scanner scan14 = new Scanner(System.in);
 				String selection = scan14.nextLine();
 				System.out.println();
 
 				if (selection.equals("balance")){
-					//read balance 
-					String text = "";
-					int lineNumber;
-
-					try {
-						FileReader readfile = new FileReader("CustomerSavingsAccount.txt");
-						BufferedReader readbuffer = new BufferedReader(readfile);
-
-						for (lineNumber = 1; lineNumber < 7; lineNumber++){
-							if (lineNumber == 6){
-								text = readbuffer.readLine();
-							}
-							else {
-								readbuffer.readLine();
-							}
-							}
-						}
-						catch (IOException e){
-							e.printStackTrace();
-						}
-						System.out.println(text);
-						//thank you (end)
+					System.out.println("Your balance is: $" + savingATM.get(index));
 					}
 				
-
 				else if (selection.equals("deposit")){
-					//deposit money (add to current balance)
-
-					//option to check balance
+					System.out.println("How much would you like to deposit");
+					Scanner scan6 = new Scanner(System.in);
+					Double depositAmount = scan6.nextDouble();
+					Double initialBalance = savingATM.get(index);
+					Double NewBalance = initialBalance + depositAmount;
+					savingATM.set(index, NewBalance);
+					System.out.println("Your new balance is: $" + NewBalance);
 				}
 
 				else if (selection.equals("withdraw")){
-					//withdraw money from current balance 
-
-					//option to check balance
+					System.out.println("How much would you like to withdraw?");
+					Scanner scan7 = new Scanner(System.in);
+					Double withdrawAmount = scan7.nextDouble();
+					Double intialBalance = savingATM.get(index);
+					Double NewBalance = intialBalance - withdrawAmount;
+					savingATM.set(index, NewBalance);
+					System.out.println("Your new balance is: $" + NewBalance);
 				}
-			}
-		}
-	}
+			//}
+				}
+		
+	//}
 
 	public static void main(String[] args) {
-		Welcome();
-		Accounts();
+		
+		// Accounts();
+		ArrayList <Double> checkingBalance = new ArrayList<>();
+		ArrayList <Double> savingsBalance = new ArrayList<>();
 
-		//maybe make a function for a deposit? 
-		//maybe make how much the wanna deposit into a function? pass in information
-		//double deposit;
-		//MoneyInAccount(deposit);
+
+		ArrayList <String> name = new ArrayList<>(); 
+		name.add("Prethel Alam");
+		checkingBalance.add(23.23);
+		savingsBalance.add(100.21);
+
+		Scanner scan1 = new Scanner(System.in);
+		Welcome(name, scan1, checkingBalance, savingsBalance);
+		//System.out.println(name.get(0));
+	
+
+
+		//array list: the size of the array list is changable (you can add or subtract spaces or locations) but you cant do that in an array 
 	}
 }
+//}
 	

@@ -1,7 +1,7 @@
 The customers savings account information:
 
-Customer name is Prethel Alam
+Customer name is prethel
 Customers age is 23
-Customers sex is Male
+Customers sex is ,ale
 Customers current balance:
 5432.21
