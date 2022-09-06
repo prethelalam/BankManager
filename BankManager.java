@@ -23,38 +23,76 @@ public class BankManager {
 		String response = scan1.next();
 
 		if (response.equals("new")){
-			System.out.println("What is your name?");
-			Scanner scan4 = new Scanner(System.in);
-			String name = scan4.nextLine();
-			namearray.add(name); //so here we are adding name into the namearray
-			System.out.println();
-			System.out.println("Welcome " + name);
-			System.out.println();
+			// System.out.println("What is your name?");
+			// Scanner scan4 = new Scanner(System.in);
+			// String name = scan4.nextLine();
+			// namearray.add(name); //so here we are adding name into the namearray
+			// System.out.println();
+			// System.out.println("Welcome " + name);
+			// System.out.println();
 			System.out.println("Would you like to open a checking account or a savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
 			
 			response = scan1.next();
 
 			if (response.equals("checking")){
-				Checking();
+				Checking(namearray, checkingArray, savingArray);
 			}
 			else {
-				Saving();
+				Saving(namearray, checkingArray, savingArray);
 			}
 
 		}
 
 		else {
+			WelcomeBack(namearray, checkingArray, savingArray);
+		}
+
+		// else {
+		// 	System.out.println("What is your name?");
+		// 	Scanner scan2 = new Scanner(System.in);
+		// 	String name = scan2.nextLine();
+
+		// 	System.out.println("Welcome " + name);
+		// 	System.out.println();
+		// 	int nameIndex = namearray.indexOf(name); //this is saving the index (place value in the arraylist) of the name
+
+		// 	System.out.println("Would you like to access your checking or savings account? (Enter checking for checking and saving for savings)");
+		// 	Scanner scan3 = new Scanner(System.in);
+		// 	response = scan3.nextLine();
+
+		// 	if (response.equals("checking"))
+		// 	{
+		// 		checkingATM(nameIndex, checkingArray);
+		// 	}
+		// 	else {
+		// 		savingATM(nameIndex, savingArray);
+		// 	}
+		// }
+
+		
+		
+	}
+
+	static void WelcomeBack(ArrayList <String> nameArray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
+		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!"); 
+		// System.out.println();
+		// System.out.println("Lets create another account, wheather that be a checking or savings account? (Enter checking to create a checking account and enter saving to create a savings account)"); //lets change this to accessing to checking or saving
+		// Scanner scan17 = new Scanner(System.in);
+		// String choice = scan17.nextLine();
+
+		
+		
 			System.out.println("What is your name?");
 			Scanner scan2 = new Scanner(System.in);
 			String name = scan2.nextLine();
 
 			System.out.println("Welcome " + name);
 			System.out.println();
-			int nameIndex = namearray.indexOf(name); //this is saving the index (place value in the arraylist) of the name
+			int nameIndex = nameArray.indexOf(name); //this is saving the index (place value in the arraylist) of the name
 
 			System.out.println("Would you like to access your checking or savings account? (Enter checking for checking and saving for savings)");
 			Scanner scan3 = new Scanner(System.in);
-			response = scan3.nextLine();
+			String response = scan3.nextLine();
 
 			if (response.equals("checking"))
 			{
@@ -63,30 +101,17 @@ public class BankManager {
 			else {
 				savingATM(nameIndex, savingArray);
 			}
-		}
+		
+		// if (choice.equals("checking")){
+		// 	Checking();
+		// }
 
-		
-		
+		// else if (choice.equals("saving")){
+		// 	Saving();
+		// }
 	}
 
-	static void WelcomeBack(){
-		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!"); 
-		System.out.println();
-		System.out.println("Lets create another account, wheather that be a checking or savings account? (Enter checking to create a checking account and enter saving to create a savings account)"); //lets change this to accessing to checking or saving
-		Scanner scan17 = new Scanner(System.in);
-		String choice = scan17.nextLine();
-		System.out.println();
-		
-		if (choice.equals("checking")){
-			Checking();
-		}
-
-		else if (choice.equals("saving")){
-			Saving();
-		}
-	}
-
-	static void Checking(){
+	static void Checking(ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
 			System.out.println("You have chosen to create a checking account! At this moment we will take some of your information.");
 			System.out.println();
 
@@ -94,6 +119,7 @@ public class BankManager {
 			Scanner scan3 = new Scanner(System.in);
 			String CustomerName = scan3.nextLine();
 			System.out.println();
+			namearray.add(CustomerName);
 
 			System.out.println("What is your current age?");
 			Scanner scan4 = new Scanner(System.in);
@@ -112,31 +138,33 @@ public class BankManager {
 			String amount = scan6.nextLine();
 			BankManager.Deposit = Double.parseDouble(amount);
 			System.out.println();
+			checkingArray.add(Deposit);
 
-			try {
-				File CheckingInformation = new File ("CustomerCheckingAccount.txt");
+			savingArray.add(-1.0);
 
-				if (!CheckingInformation.exists()){
-					CheckingInformation.createNewFile();
-				}
-				PrintWriter WriteCheckingInformation = new PrintWriter(CheckingInformation);
-				WriteCheckingInformation.println("The customers checking account information:");
-				WriteCheckingInformation.println();
-				WriteCheckingInformation.println("Customer name is " + CustomerName);
-				WriteCheckingInformation.println("Customers age is " + age);
-				WriteCheckingInformation.println("Customers sex is " + sex);
-				WriteCheckingInformation.println("Customers current balance:"); //seperate the sentence and amount on different lines and read only the price in ATM function
-				WriteCheckingInformation.println(Deposit);
-				WriteCheckingInformation.close();
-				System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
-				System.out.println();
-			}
-			catch (IOException e){
-				e.printStackTrace();
-			}
+			// try {
+			// 	File CheckingSavingInformation = new File ("CustomerAccountInformation.txt");
+
+			// 	if (!CheckingSavingInformation.exists()){
+			// 		CheckingSavingInformation.createNewFile();
+			// 	}
+			// 	PrintWriter WriteCheckingSavingInformation = new PrintWriter(CheckingSavingInformation);
+			// 	WriteCheckingSavingInformation.println("The customers account information:");
+			// 	WriteCheckingSavingInformation.println();
+			// 	WriteCheckingSavingInformation.println(CustomerName);
+			// 	WriteCheckingSavingInformation.println(age);
+			// 	WriteCheckingSavingInformation.println(sex);
+			// 	WriteCheckingSavingInformation.println(Deposit);
+			// 	WriteCheckingSavingInformation.close();
+			// 	System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
+			// 	System.out.println();
+			// }
+			// catch (IOException e){
+			// 	e.printStackTrace();
+			// }
 		}
 
-		static void Saving (){
+		static void Saving (ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
 			System.out.println("You have chosen to create a savings account! At this point we will take some information.");
 					System.out.println();
 
@@ -144,7 +172,8 @@ public class BankManager {
 					Scanner scan10 = new Scanner(System.in);
 					String name = scan10.nextLine();
 					System.out.println();
-					
+					namearray.add(name);
+
 					System.out.println("What is your current age?");
 					Scanner scan11 = new Scanner(System.in);
 					String age = scan11.nextLine();
@@ -162,29 +191,70 @@ public class BankManager {
 					String deposit = scan13.nextLine();
 					Double Deposit = Double.parseDouble(deposit);
 					System.out.println();
+					savingArray.add(Deposit);
 
-					try {
-						File SavingInformation = new File ("CustomerSavingsAccount.txt");
+					checkingArray.add(-1.0);
 
-						if (!SavingInformation.exists()){
-							SavingInformation.createNewFile();
-						}
-						PrintWriter WriteSavingInformation = new PrintWriter (SavingInformation);
-						WriteSavingInformation.println("The customers savings account information:");
-						WriteSavingInformation.println();
-						WriteSavingInformation.println("Customer name is " + name);
-						WriteSavingInformation.println("Customers age is " + Age);
-						WriteSavingInformation.println("Customers sex is " + sex);
-						WriteSavingInformation.println("Customers current balance:");
-						WriteSavingInformation.println(Deposit);
-						WriteSavingInformation.close();
-						System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
-						System.out.println();
-					}
-					catch (IOException e){
-						e.printStackTrace();
-					}
+					// try {
+					// 	File CheckingSavingInformation = new File ("CustomerAccountInformation.txt");
+
+					// 	if (!CheckingSavingInformation.exists()){
+					// 		CheckingSavingInformation.createNewFile();
+					// 	}
+					// 	PrintWriter WriteCheckingSavingInformation = new PrintWriter (CheckingSavingInformation);
+					// 	// WriteCheckingSavingInformation.println("The customers account information:");
+					// 	// WriteCheckingSavingInformation.println();
+					// 	// WriteCheckingSavingInformation.println(name);
+					// 	// WriteCheckingSavingInformation.println(Age);
+					// 	// WriteCheckingSavingInformation.println(sex);
+					// 	WriteCheckingSavingInformation.println(Deposit);
+					// 	WriteCheckingSavingInformation.close();
+					// 	System.out.println("Your information has been successfully saved! Thank you for providing your business to Seamless Bank. Come back soon!");
+					// 	System.out.println();
+					// }
+					// catch (IOException e){
+					// 	e.printStackTrace();
+					// }
+
 		}
+
+static void WriteFile(PrintWriter information, ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
+						//File CheckingSavingInformation = new File ("CustomerAccountInformation.txt"); (have this in main)
+
+						// if (!CheckingSavingInformation.exists()){
+						// 	CheckingSavingInformation.createNewFile();
+						// }
+						// PrintWriter WriteCheckingSavingInformation = new PrintWriter (Information);
+	for (int i = 0; i < namearray.size(); i++){
+		information.println(namearray.get(i));
+		information.println(checkingArray.get(i));
+		information.println(savingArray.get(i));
+	}
+	information.close();
+	}
+	
+static void ReadFile(Scanner inFile, ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
+	boolean doubleTracker = false;
+
+	while(inFile.hasNext()){
+		String holdString = inFile.nextLine();
+		Double holdDoubles = inFile.nextDouble();
+		if (inFile.nextLine()){
+			namearray.add(inFile.nextLine());
+			doubleTracker = false;
+		}
+		else if (inFile.nextDouble()){
+			checkingArray.add(InFile.nextDouble());
+			doubleTracker = true;
+		}
+		else if (inFile.nextDouble() && doubleTracker == true){
+			savingArray.add(InFile.nextDouble());
+		}
+
+	}
+	
+}	
+
 
 static void checkingATM(int index, ArrayList <Double> checkingATM){
 		System.out.println("For your checking account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
@@ -193,7 +263,8 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 		System.out.println();
 
 		if (selection.equals("balance")){
-			System.out.println("Your balance is: $" + checkingATM.get(index));
+			//System.out.println("Your balance is: $" + checkingATM.get(index));
+			System.out.println(checkingATM.get(index));
 				}
 
 		else if (selection.equals("deposit")){
@@ -254,22 +325,37 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 		
 	//}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
+		FileInputStream ReadInformation = new FileInputStream("CustomerAccountInformation.txt");
 		
+		Scanner inFile = new Scanner(ReadInformation);
+
 		// Accounts();
-		ArrayList <Double> checkingBalance = new ArrayList<>();
-		ArrayList <Double> savingsBalance = new ArrayList<>();
+		ArrayList <Double> checkingBalance = new ArrayList<>(3);
+		ArrayList <Double> savingsBalance = new ArrayList<>(3);
 
 
-		ArrayList <String> name = new ArrayList<>(); 
+		ArrayList <String> name = new ArrayList<>(3); 
 		name.add("Prethel Alam");
+		name.add("Alex");
+		name.add("Joe");
+
 		checkingBalance.add(23.23);
-		savingsBalance.add(100.21);
+		checkingBalance.add(10.21);
+		checkingBalance.add(15.23);
+
+		savingsBalance.add(115.21);
+		savingsBalance.add(135.43);
+		savingsBalance.add(174.32);
 
 		Scanner scan1 = new Scanner(System.in);
 		Welcome(name, scan1, checkingBalance, savingsBalance);
 		//System.out.println(name.get(0));
+
 	
+		PrintWriter pw = new PrintWriter (new File("CustomerAccountInformation.txt"));
+		WriteFile(pw, name, checkingBalance, savingsBalance);
+
 
 
 		//array list: the size of the array list is changable (you can add or subtract spaces or locations) but you cant do that in an array 
