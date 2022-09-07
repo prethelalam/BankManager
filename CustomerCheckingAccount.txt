@@ -1,7 +1,0 @@
-The customers checking account information:
-
-Customer name is Prethel
-Customers age is 23
-Customers sex is Male
-Customers current balance:
-12.21
