@@ -1,4 +1,3 @@
-//package BankManager;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -6,23 +5,23 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.text.NumberFormat;
-import java.io.*; //need to import this package in order to crate and write in files (by putting in * you can include all the classes you want to use (such as write and print)
+import java.io.*; //need to import this package in order to create and write in files (by putting in * you can include all the classes you want to use (such as write and print))
 
 
 public class BankManager {
-	//public static Double Deposit;
 	static void Welcome(ArrayList <String> namearray, Scanner scan1, ArrayList <Double> checkingArray, ArrayList <Double> savingArray) {
-		
 
 		System.out.println();
 		System.out.println("Welcome to Seamless Bank! Our repution is that we provide a seamless experience in many different transactions and creating various accounts for our clients!");
+		System.out.println();
 		System.out.println("Are you a new or exisiting customer? (enter new or existing)");
 		String response = scan1.next();
+		System.out.println();
 
 		if (response.equals("new")){
 			System.out.println("Would you like to open a checking account or a savings account? (Enter checking to create a checking account and enter saving to create a savings account)");
-			
 			response = scan1.next();
+			System.out.println();
 
 			if (response.equals("checking")){
 				Checking(namearray, checkingArray, savingArray);
@@ -42,10 +41,11 @@ public class BankManager {
 
 	static void WelcomeBack(ArrayList <String> nameArray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
 		System.out.println("Welcome back to Seamless bank! Lets assist you in whatever you may need!"); 
-		
+			System.out.println();
 			System.out.println("What is your name?");
 			Scanner scan2 = new Scanner(System.in);
 			String name = scan2.nextLine();
+			System.out.println();
 
 			System.out.println("Welcome " + name);
 			System.out.println();
@@ -58,15 +58,19 @@ public class BankManager {
 			while (true){
 				if (response.equals("checking"))
 				{
+					System.out.println();
 					checkingATM(nameIndex, checkingArray);
 					System.out.println("Would you like to access your checking or savings account or leave the store? (Enter checking for checking, saving for savings, enter leave to leave the store)");
 					response = scan3.nextLine();
+					System.out.println();
 
 				}
 				else if (response.equals("saving")) {
+					System.out.println();
 					savingATM(nameIndex, savingArray);
 					System.out.println("Would you like to access your checking or savings account or leave the store? (Enter checking for checking, saving for savings, enter leave to leave the store)");
 					response = scan3.nextLine();
+					System.out.println();
 				}
 				else {
 					System.out.println("Thank you for using our service. Come back soon!");
@@ -94,7 +98,6 @@ public class BankManager {
 			System.out.println("What is your sex (Male/Female)?");
 			Scanner scan5 = new Scanner(System.in);
 			String sex = scan5.nextLine();
-			//char Sex = sex.charAt(0);
 			System.out.println();
 
 			System.out.println("How much money would you like to deposit into your checking account?");
@@ -126,7 +129,6 @@ public class BankManager {
 					System.out.println("What is your sex (Male/Female)");
 					Scanner scan12 = new Scanner(System.in);
 					String sex = scan12.nextLine();
-					//char Sex = sex.charAt(0);
 					System.out.println();
 
 					System.out.println("How much would you like to deposit into your savings account?");
@@ -182,8 +184,8 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 		System.out.println();
 
 		if (selection.equals("balance")){
-			//System.out.println("Your balance is: $" + checkingATM.get(index));
-			System.out.println(checkingATM.get(index));
+			System.out.println("Your balance is: $" + checkingATM.get(index));
+			System.out.println();
 				}
 
 		else if (selection.equals("deposit")){
@@ -193,8 +195,9 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 			Double intialBalance = checkingATM.get(index);
 			Double NewBalance = intialBalance + depositAmount;
 			checkingATM.set(index, NewBalance);
+			System.out.println();
 			System.out.println("Your new balance is: $" + NewBalance);
-		
+			System.out.println();
 			}
 
 		else if (selection.equals("withdraw")){
@@ -204,7 +207,9 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 			Double intialBalance = checkingATM.get(index);
 			Double NewBalance = intialBalance - withdrawAmount;
 			checkingATM.set(index, NewBalance);
+			System.out.println();
 			System.out.println("Your new balance is: $" + NewBalance);
+			System.out.println();
 		}
 	}
 
@@ -216,6 +221,7 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 
 				if (selection.equals("balance")){
 					System.out.println("Your balance is: $" + savingATM.get(index));
+					System.out.println();
 					}
 				
 				else if (selection.equals("deposit")){
@@ -225,7 +231,9 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 					Double initialBalance = savingATM.get(index);
 					Double NewBalance = initialBalance + depositAmount;
 					savingATM.set(index, NewBalance);
+					System.out.println();
 					System.out.println("Your new balance is: $" + NewBalance);
+					System.out.println();
 				}
 
 				else if (selection.equals("withdraw")){
@@ -235,32 +243,34 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 					Double intialBalance = savingATM.get(index);
 					Double NewBalance = intialBalance - withdrawAmount;
 					savingATM.set(index, NewBalance);
+					ystem.out.println();
 					System.out.println("Your new balance is: $" + NewBalance);
+					System.out.println();
 				}
 				}
 
 	public static void main(String[] args) throws Exception{
-		FileInputStream ReadInformation = new FileInputStream("CustomerAccountInformation.txt");
+		
+		FileInputStream ReadInformation = new FileInputStream("CustomerAccountInformation.txt"); //this is to read the information from the text file that we created
 		
 		Scanner inFile = new Scanner(ReadInformation);
 
-		// Accounts();
+		//Here you made an arraylist to hold the checking and saving balance. there are 3 indexes 0,1,2
 		ArrayList <Double> checkingBalance = new ArrayList<>(3);
 		ArrayList <Double> savingsBalance = new ArrayList<>(3);
 
-		
+		//here you made an arraylist to hold the name. there are 3 indexes 0,1,2
 		ArrayList <String> name = new ArrayList<>(3); 
 		ReadFile(inFile, name, checkingBalance, savingsBalance);
+		//above we are passing in the information for the read file helper function
 
 		Scanner scan1 = new Scanner(System.in);
 		Welcome(name, scan1, checkingBalance, savingsBalance);
-		//System.out.println(name.get(0));
+		//here we are passing in information for the welcome function so we can store all those values in the appropriate index
 
-	
+		//this is the write helper function where we are passing in parameters into the function 
 		PrintWriter pw = new PrintWriter (new File("CustomerAccountInformation.txt"));
 		WriteFile(pw, name, checkingBalance, savingsBalance);
-
-
 
 		//array list: the size of the array list is changable (you can add or subtract spaces or locations) but you cant do that in an array 
 	}
