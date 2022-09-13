@@ -243,7 +243,7 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 					Double intialBalance = savingATM.get(index);
 					Double NewBalance = intialBalance - withdrawAmount;
 					savingATM.set(index, NewBalance);
-					ystem.out.println();
+					System.out.println();
 					System.out.println("Your new balance is: $" + NewBalance);
 					System.out.println();
 				}
