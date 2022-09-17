@@ -58,7 +58,6 @@ public class BankManager {
 			while (true){
 				if (response.equals("checking"))
 				{
-					System.out.println();
 					checkingATM(nameIndex, checkingArray);
 					System.out.println("Would you like to access your checking or savings account or leave the store? (Enter checking for checking, saving for savings, enter leave to leave the store)");
 					response = scan3.nextLine();
@@ -66,7 +65,6 @@ public class BankManager {
 
 				}
 				else if (response.equals("saving")) {
-					System.out.println();
 					savingATM(nameIndex, savingArray);
 					System.out.println("Would you like to access your checking or savings account or leave the store? (Enter checking for checking, saving for savings, enter leave to leave the store)");
 					response = scan3.nextLine();
