@@ -156,33 +156,30 @@ static void WriteFile(PrintWriter information, ArrayList <String> namearray, Arr
 	}
 	
 static void ReadFile(Scanner inFile, ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
-	boolean doubleTracker = false;
-
+	int counter = 0;
 	while(inFile.hasNext()){
-		String holdString = inFile.nextLine();
-		try { //this will try to execute whatever you want it to do in the try statment, if not then it goes to the catch statement to catch the errors 
-			Double holdDoubles = Double.parseDouble(holdString);
-
-			if (doubleTracker == true) {
-				savingArray.add(holdDoubles);
-				
+		if (counter == 0){
+			while(inFile.hasNext()){
+				namearray.add(inFile.next());
 			}
-			
-			checkingArray.add(holdDoubles);
-			doubleTracker = true;
 		}
-		catch (NumberFormatException ex)
-		{
-			namearray.add(holdString);
-			doubleTracker = false;
+		if (counter == 1){
+			while(inFile.hasNextDouble()){
+				checkingArray.add(inFile.nextDouble());
+			}
 		}
+		if (counter == 2){
+			while(inFile.hasNextDouble()){
+				savingArray.add(inFile.nextDouble());
+			}
+		}
+		counter++;
 	}
 	inFile.close();
-	
 }	
 
 
-static void checkingATM(int index, ArrayList <Double> checkingATM){
+static void checkingATM(int index, ArrayList <Double> checkingATM){ //need to adjust the index i think
 		System.out.println("For your checking account: Would you like to see your balance, deposit money, or withdraw money? (enter balance for balance, deposit for deposit, or withdraw for withdraw)");
 		Scanner scan15 = new Scanner(System.in);
 		String selection = scan15.nextLine();
@@ -191,7 +188,7 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 		if (selection.equals("balance")){
 			System.out.println("Your balance is: $" + checkingATM.get(index));
 			System.out.println();
-				}
+			}
 
 		else if (selection.equals("deposit")){
 			System.out.println("How much would you like to deposit?");
@@ -256,35 +253,38 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 
 	public static void main(String[] args) throws Exception{
 		
-		FileInputStream ReadInformation = new FileInputStream("CustomerAccountInformation.txt"); //this is to read the information from the text file that we created
+		FileInputStream ReadInformation = new FileInputStream("CustomerAccountInformation.txt"); 
+		//this is to read the information from the text file that we created
 		
 		Scanner inFile = new Scanner(ReadInformation);
 
 		//Here you made an arraylist to hold the checking and saving balance. there are 3 indexes 0,1,2
-		ArrayList <Double> checkingBalance = new ArrayList<>(3);
+		ArrayList <Double> checkingBalance = new ArrayList<>(3); //so we have 2 empty array lists because it is all being printed onto 1 line
 		ArrayList <Double> savingsBalance = new ArrayList<>(3);
 
 		//here you made an arraylist to hold the name. there are 3 indexes 0,1,2
 		ArrayList <String> name = new ArrayList<>(3); 
-		//ReadFile(inFile, name, checkingBalance, savingsBalance);
+		ReadFile(inFile, name, checkingBalance, savingsBalance);
 		//above we are passing in the information for the read file helper function
-		Scanner scan2 = new Scanner(System.in);
-		System.out.println("keep using program. Yes or q to quit");
-		String scanninginfo = scan2.next();
+		// Scanner scan2 = new Scanner(System.in);
+		// System.out.println("keep using program. Yes or q to quit");
+		// String scanninginfo = scan2.next();
 
-		while (true){
-			if (scanninginfo.equals("q")){
-				//System.out.print("testing");
-				break;
-				
-				}
-			Scanner scan1 = new Scanner(System.in);
-			Welcome(name, scan1, checkingBalance, savingsBalance);
-			//here we are passing in information for the welcome function so we can store all those values in the appropriate index
 
-			System.out.println("keep using program. Yes or q to quit");
-			scanninginfo = scan2.next();
-		}
+
+		// while (true){
+		// 	if (scanninginfo.equals("q")){
+		// 		//System.out.print("testing");
+		// 		break;
+		// 		}
+		// 	Scanner scan1 = new Scanner(System.in);
+		// 	Welcome(name, scan1, checkingBalance, savingsBalance);
+		// 	//here we are passing in information for the welcome function so we can store all those values in the appropriate index
+
+		// 	System.out.println("keep using program. Yes or q to quit");
+		// 	scanninginfo = scan2.next();
+		// }
+
 		for(int i = 0; i<name.size(); i++){
 			System.out.print(name.get(i) + " ");
 		}
@@ -297,8 +297,8 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){
 			System.out.print(savingsBalance.get(i) + " ");
 		}
 		//this is the write helper function where we are passing in parameters into the function 
-		PrintWriter pw = new PrintWriter (new File("CustomerAccountInformation.txt"));
-		WriteFile(pw, name, checkingBalance, savingsBalance);
+		// PrintWriter pw = new PrintWriter (new File("CustomerAccountInformation.txt"));
+		// WriteFile(pw, name, checkingBalance, savingsBalance);
 
 		//array list: the size of the array list is changable (you can add or subtract spaces or locations) but you cant do that in an array 
 	}
