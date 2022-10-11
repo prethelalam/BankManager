@@ -140,16 +140,10 @@ public class BankManager {
 		}
 
 static void WriteFile(PrintWriter information, ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
-		for(int i = 0; i<namearray.size(); i++){
-			information.print(namearray.get(i) + " ");
-		}
-		information.println();
-		for(int i = 0; i<checkingArray.size(); i++){
-			information.print(checkingArray.get(i) + " ");
-		}
-		information.println();
-		for(int i = 0; i<savingArray.size(); i++){
-			information.print(savingArray.get(i) + " ");
+		for (int i = 0; i<namearray.size(); i++){
+			information.println(namearray.get(i));
+			information.println(checkingArray.get(i));
+			information.println(savingArray.get(i));
 		}
 	
 	information.close();
@@ -158,20 +152,22 @@ static void WriteFile(PrintWriter information, ArrayList <String> namearray, Arr
 static void ReadFile(Scanner inFile, ArrayList <String> namearray, ArrayList <Double> checkingArray, ArrayList <Double> savingArray){
 	int counter = 0;
 	while(inFile.hasNext()){
+
+		if (counter == 3){ //this counter is tracking which array we are adding too
+			counter = 0;
+		}
 		if (counter == 0){
-			while(inFile.hasNext()){
-				namearray.add(inFile.next());
-			}
+				namearray.add(inFile.next());	
 		}
 		if (counter == 1){
-			while(inFile.hasNextDouble()){
+		
 				checkingArray.add(inFile.nextDouble());
-			}
+			
 		}
 		if (counter == 2){
-			while(inFile.hasNextDouble()){
+			
 				savingArray.add(inFile.nextDouble());
-			}
+			
 		}
 		counter++;
 	}
@@ -266,39 +262,14 @@ static void checkingATM(int index, ArrayList <Double> checkingATM){ //need to ad
 		ArrayList <String> name = new ArrayList<>(3); 
 		ReadFile(inFile, name, checkingBalance, savingsBalance);
 		//above we are passing in the information for the read file helper function
-		// Scanner scan2 = new Scanner(System.in);
-		// System.out.println("keep using program. Yes or q to quit");
-		// String scanninginfo = scan2.next();
 
-
-
-		// while (true){
-		// 	if (scanninginfo.equals("q")){
-		// 		//System.out.print("testing");
-		// 		break;
-		// 		}
-		// 	Scanner scan1 = new Scanner(System.in);
-		// 	Welcome(name, scan1, checkingBalance, savingsBalance);
+		Scanner scan1 = new Scanner(System.in);
+		Welcome(name, scan1, checkingBalance, savingsBalance);
 		// 	//here we are passing in information for the welcome function so we can store all those values in the appropriate index
 
-		// 	System.out.println("keep using program. Yes or q to quit");
-		// 	scanninginfo = scan2.next();
-		// }
-
-		for(int i = 0; i<name.size(); i++){
-			System.out.print(name.get(i) + " ");
-		}
-		System.out.println();
-		for(int i = 0; i<checkingBalance.size(); i++){
-			System.out.print(checkingBalance.get(i) + " ");
-		}
-		System.out.println();
-		for(int i = 0; i<savingsBalance.size(); i++){
-			System.out.print(savingsBalance.get(i) + " ");
-		}
 		//this is the write helper function where we are passing in parameters into the function 
-		// PrintWriter pw = new PrintWriter (new File("CustomerAccountInformation.txt"));
-		// WriteFile(pw, name, checkingBalance, savingsBalance);
+		PrintWriter pw = new PrintWriter (new File("CustomerAccountInformation.txt"));
+		WriteFile(pw, name, checkingBalance, savingsBalance);
 
 		//array list: the size of the array list is changable (you can add or subtract spaces or locations) but you cant do that in an array 
 	}
