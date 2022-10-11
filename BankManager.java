@@ -87,17 +87,6 @@ public class BankManager {
 			System.out.println();
 			namearray.add(CustomerName);
 
-			// System.out.println("What is your current age?");
-			// Scanner scan4 = new Scanner(System.in);
-			// String age = scan4.nextLine();
-			// Integer Age = Integer.parseInt(age);
-			// System.out.println();
-
-			// System.out.println("What is your sex (Male/Female)?");
-			// Scanner scan5 = new Scanner(System.in);
-			// String sex = scan5.nextLine();
-			// System.out.println();
-
 			System.out.println("How much money would you like to deposit into your checking account?");
 			Scanner scan6 = new Scanner(System.in);
 			String amount = scan6.nextLine();
@@ -117,17 +106,6 @@ public class BankManager {
 					String name = scan10.nextLine();
 					System.out.println();
 					namearray.add(name);
-
-					// System.out.println("What is your current age?");
-					// Scanner scan11 = new Scanner(System.in);
-					// String age = scan11.nextLine();
-					// Integer Age = Integer.parseInt(age);
-					// System.out.println();
-
-					// System.out.println("What is your sex (Male/Female)");
-					// Scanner scan12 = new Scanner(System.in);
-					// String sex = scan12.nextLine();
-					// System.out.println();
 
 					System.out.println("How much would you like to deposit into your savings account?");
 					Scanner scan13 = new Scanner(System.in);
